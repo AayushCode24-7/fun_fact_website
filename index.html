@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fun Python Website</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f06, #4a90e2);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    button {
+      background: #fff;
+      color: #4a90e2;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #4a90e2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Your Fun Python Website!</h1>
+  <p>Click the button to get a fun Python fact!</p>
+
+  <button onclick="showFact()"> Show Fun Fact </button>
+
+  <p id="fact" style="margin-top: 30px; font-size: 24px;"></p>
+
+  <script>
+    const facts = [
+      "Python was named after Monty Python's Flying Circus!",
+      "Python is used by NASA for space exploration tasks.",
+      "The Zen of Python is a collection of guiding principles.",
+      "Python can be used for web development, AI, data science, and more.",
+      "Guido van Rossum created Python in 1991.",
+      "python.org is the official website for the python programing language.",
+    ];
+    function showFact() {
+      const fact = facts[Math.floor(Math.random() * facts.length)];
+      document.getElementById("fact").innerText = fact;
+    }
+  </script>
+</body>
+</html>
