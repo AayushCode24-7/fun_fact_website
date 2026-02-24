@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic CSS Python Facts</title>
+    <style>
+        :root {
+            /* Default Theme Colors */
+            --bg: #1a1a2e;
+            --accent: #4a90e2;
+            --text-color: #ffd43b;
+        }
+
+        /* Logic: Change variables based on selection */
+        #fact1:checked ~ * { --accent: #ff4d4d; } /* Fact 1 is Red */
+        #fact2:checked ~ * { --accent: #4ade80; } /* Fact 2 is Green */
+        #fact3:checked ~ * { --accent: #ffd43b; --text-color: #fff; } /* Fact 3 is Gold */
+        #fact4:checked ~ * { --accent: #a855f7; } /* Fact 4 is Purple */
+
+        body {
+            background: var(--bg);
+            transition: background 0.5s ease;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        input[type="radio"] { display: none; }
+
+        .fact-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px solid var(--accent);
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 150px;
+            margin-bottom: 2rem;
+            display: grid; /* Stack items on top of each other */
+            place-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fact-text {
+            grid-area: 1 / 1; /* All text occupies the same space */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            font-size: 1.25rem;
+            color: var(--text-color);
+            pointer-events: none;
+        }
+
+        /* Logic: Show specific text based on Radio state */
+        #default-radio:checked ~ .fact-box #default-text,
+        #fact1:checked ~ .fact-box #text1,
+        #fact2:checked ~ .fact-box #text2,
+        #fact3:checked ~ .fact-box #text3,
+        #fact4:checked ~ .fact-box #text4 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .btn-label {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent);
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-label:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Active Button Highlight */
+        #fact1:checked ~ .button-group label[for="fact1"],
+        #fact2:checked ~ .button-group label[for="fact2"],
+        #fact3:checked ~ .button-group label[for="fact3"],
+        #fact4:checked ~ .button-group label[for="fact4"] {
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 0 20px var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🐍 Python Secrets</h1>
+
+        <input type="radio" name="facts" id="default-radio" checked>
+        <input type="radio" name="facts" id="fact1">
+        <input type="radio" name="facts" id="fact2">
+        <input type="radio" name="facts" id="fact3">
+        <input type="radio" name="facts" id="fact4">
+
+        <div class="fact-box">
+            <div class="fact-text" id="default-text">Tap a category to begin...</div>
+            <div class="fact-text" id="text1">Named after <b>Monty Python</b>, not the snake!</div>
+            <div class="fact-text" id="text2">Type <code>import this</code> in Python to see its philosophy.</div>
+            <div class="fact-text" id="text3">Python is the #1 language for <b>AI and Data Science</b>.</div>
+            <div class="fact-text" id="text4">Guido van Rossum released the first version in <b>1991</b>.</div>
+        </div>
+
+        <div class="button-group">
+            <label for="fact1" class="btn-label">Origins</label>
+            <label for="fact2" class="btn-label">Zen Mode</label>
+            <label for="fact3" class="btn-label">Modern Use</label>
+            <label for="fact4" class="btn-label">History</label>
+        </div>
+    </div>
+
+</body>
+</html>
